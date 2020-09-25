@@ -6,11 +6,11 @@ var searchShelf = require("../src/shelf.js").searchShelf;
 
 describe("shelf.js", function() {
   describe("shelfBook", function() {
-    it.skip("should be a function", function() {
+    it("should be a function", function() {
       assert.isFunction(shelfBook);
     });
   
-    it.skip("should add books to a specific shelf", function() {
+    it("should add books to a specific shelf", function() {
       var hyperion = {
         title: "Hyperion",
         mainCharacter: { name: "The Shrike", age: null, pronouns: "they" },
@@ -28,11 +28,11 @@ describe("shelf.js", function() {
       shelfBook(hyperion, sciFiShelf);
       shelfBook(dune, sciFiShelf);
   
-      assert.equal(sciFiShelf[0], dune);
-      assert.equal(sciFiShelf[1], hyperion);
+      assert.equal(sciFiShelf[0], hyperion);
+      assert.equal(sciFiShelf[1], dune);
     });
   
-    it.skip("should add another book to the shelf", function() {
+    it("should add another book to the shelf", function() {
       var hyperion = {
         title: "Hyperion",
         mainCharacter: { name: "The Shrike", age: null, pronouns: "they" },
@@ -56,12 +56,12 @@ describe("shelf.js", function() {
       shelfBook(endersGame, sciFiShelf);
       shelfBook(dune, sciFiShelf);
   
-      assert.equal(sciFiShelf[0], dune);
+      assert.equal(sciFiShelf[2], dune);
       assert.equal(sciFiShelf[1], endersGame);
-      assert.equal(sciFiShelf[2], hyperion);
+      assert.equal(sciFiShelf[0], hyperion);
     });
 
-    it.skip("shelves can only hold a certain amount of books", function () {
+    it("shelves can only hold a certain amount of books", function () {
       var hyperion = {
         title: "Hyperion",
         mainCharacter: { name: "The Shrike", age: null, pronouns: "they" },
@@ -91,12 +91,12 @@ describe("shelf.js", function() {
       shelfBook(endersGame, sciFiShelf);
 
       assert.equal(sciFiShelf.length, 3);
-      assert.deepEqual(sciFiShelf, [endersGame, hyperion, dune]);
+      assert.deepEqual(sciFiShelf, [hyperion, dune, endersGame]);
 
       shelfBook(caseysBook, sciFiShelf);
 
       assert.equal(sciFiShelf.length, 3);
-      assert.deepEqual(sciFiShelf, [endersGame, hyperion, dune]);
+      assert.deepEqual(sciFiShelf, [hyperion, dune, endersGame]);
     });
   });
 
