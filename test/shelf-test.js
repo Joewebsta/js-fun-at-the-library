@@ -101,11 +101,11 @@ describe("shelf.js", function() {
   });
 
   describe("unshelfBook", function() {
-    it.skip("should be a function", function() {
+    it("should be a function", function() {
       assert.isFunction(unshelfBook);
     });
   
-    it.skip("should remove a book by name", function() {
+    it("should remove a book by name", function() {
       var hyperion = {
         title: "Hyperion",
         mainCharacter: { name: "The Shrike", age: null, pronouns: "they" },
