@@ -7,7 +7,7 @@ function buildMainCharacter(name, age, pronouns) {
     name: name,
     age: age,
     pronouns: pronouns
-  }
+  };
 }
 
 function saveReview(review, reviewArr) {
@@ -17,7 +17,7 @@ function saveReview(review, reviewArr) {
 }
 
 function calculatePageCount(title) {
-  return title.length * 20
+  return title.length * 20;
 }
 
 function writeBook(title, character, genre) {
@@ -26,7 +26,11 @@ function writeBook(title, character, genre) {
     mainCharacter: character,
     pageCount: calculatePageCount(title),
     genre: genre
-  }
+  };
+}
+
+function editBook(book) {
+  book.pageCount *= .75;
 }
 
 module.exports = {
@@ -35,5 +39,5 @@ module.exports = {
   saveReview: saveReview,
   calculatePageCount: calculatePageCount,
   writeBook: writeBook,
-  // editBook: editBook
+  editBook: editBook
 }
