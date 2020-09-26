@@ -1,8 +1,7 @@
 const book = require("./book");
 
 function shelfBook(book, shelf) {
-  if (shelf.length === 3) return
-  
+  if (shelf.length === 3) return;
   shelf.push(book);
 }
 
@@ -15,9 +14,13 @@ function listTitles(books) {
   return books.map(book => book.title).join(', ');
 }
 
+function searchShelf(books, title) {
+  return listTitles(books).includes(title);
+}
+
 module.exports = {
   shelfBook: shelfBook,
   unshelfBook: unshelfBook,
   listTitles: listTitles,
-  // searchShelf: searchShelf
+  searchShelf: searchShelf
 };
