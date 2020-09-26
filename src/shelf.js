@@ -7,14 +7,17 @@ function shelfBook(book, shelf) {
 }
 
 function unshelfBook(title, shelf) {
-
   bookIdx = shelf.findIndex(book => book.title === title);
   shelf.splice(bookIdx, 1);      
+}
+
+function listTitles(books) {
+  return books.map(book => book.title).join(', ');
 }
 
 module.exports = {
   shelfBook: shelfBook,
   unshelfBook: unshelfBook,
-  // listTitles: listTitles,
+  listTitles: listTitles,
   // searchShelf: searchShelf
 };
