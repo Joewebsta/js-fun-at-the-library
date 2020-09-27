@@ -25,12 +25,24 @@ function addBook(library, book) {
       "Genre shelf not found";
       break;
   }
+}
+
+function checkoutBook(library, bookTitle) {
+  // let titles = Object.values(shelves).map(value => value[0][title])
+  // if (!titles.includes(bookTitle)) return
   
-  return library.shelves.fantasy.push(book);
+  shelves = library.shelves;
+
+  for (let genre in shelves) {
+    if (shelves[genre][0].title === bookTitle ) {
+      shelves[genre].pop();
+    }
+  }
+  return `You have now checked out ${bookTitle} from the Denver Public Library`;
 }
 
 module.exports = {
   createLibrary: createLibrary,
   addBook: addBook,
-  // checkoutBook: checkoutBook
+  checkoutBook: checkoutBook
 };
