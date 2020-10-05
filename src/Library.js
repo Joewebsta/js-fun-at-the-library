@@ -16,12 +16,12 @@ function addBook(library, book) {
 }
 
 function checkoutBook(library, bookTitle) {
-  if (!onShelf(library, bookTitle)) {
-    return `Sorry, there are currently no copies of ${bookTitle} available at the Denver Public Library`;
-  }
-  
   let shelves = library.shelves;
   
+  if (!onShelf(shelves, bookTitle)) {
+    return `Sorry, there are currently no copies of ${bookTitle} available at the Denver Public Library`;
+  }
+    
   for (category in shelves) {
     let bookTitles = shelves[category].map( book => book.title );
     
@@ -33,8 +33,8 @@ function checkoutBook(library, bookTitle) {
   }
 }
 
-function onShelf(library, bookTitle) {
-  let allShelves = Object.values(library.shelves);
+function onShelf(shelves, bookTitle) {
+  let allShelves = Object.values(shelves);
   let onShelf = false;
 
   for (shelve of allShelves) {
