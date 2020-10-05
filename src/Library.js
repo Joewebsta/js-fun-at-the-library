@@ -1,3 +1,5 @@
+const book = require("./book");
+
 function createLibrary(name) {
   return {
     name,
@@ -10,35 +12,40 @@ function createLibrary(name) {
 }
 
 function addBook(library, book) {
-  shelves = library.shelves
-  switch (book.genre) {
-    case 'fantasy':
-      shelves.fantasy.push(book);
-      break;
-    case 'fiction':
-      shelves.fiction.push(book);
-      break;
-    case 'nonFiction':
-      shelves.nonFiction.push(book);
-      break;
-    default:
-      "Genre shelf not found";
-      break;
-  }
+  library.shelves[book.genre].push(book);
 }
 
 function checkoutBook(library, bookTitle) {
-  // let titles = Object.values(shelves).map(value => value[0][title])
-  // if (!titles.includes(bookTitle)) return
+  if (!onShelf(library, bookTitle)) {
+    return `Sorry, there are currently no copies of ${bookTitle} available at the Denver Public Library`;
+  }
   
-  shelves = library.shelves;
-
-  for (let genre in shelves) {
-    if (shelves[genre][0].title === bookTitle ) {
-      shelves[genre].pop();
+  let shelves = library.shelves;
+  
+  for (category in shelves) {
+    let bookTitles = shelves[category].map( book => book.title );
+    
+    if (bookTitles.includes(bookTitle)) {
+      let bookIdx = bookTitles.indexOf(bookTitle);
+      shelves[category].splice(bookIdx, 1);
+      return `You have now checked out ${bookTitle} from the Denver Public Library`;
     }
   }
-  return `You have now checked out ${bookTitle} from the Denver Public Library`;
+}
+
+function onShelf(library, bookTitle) {
+  let allShelves = Object.values(library.shelves);
+  let onShelf = false;
+
+  for (shelve of allShelves) {
+    if (shelve.length === 0) continue;
+    
+    if (shelve.map(book => book.title).includes(bookTitle)) {
+      onShelf = true;
+    }
+  }
+
+  return onShelf;
 }
 
 module.exports = {
